@@ -1,0 +1,326 @@
+2022-03-06,18:12:05 [INFO] (base_handler.py:base_handler:115): function to evaluate=def _user_script(tabpy, _arg1):
+ import pandas as pd
+ def predict_bank(df):
+     import numpy as np
+     import pandas as pd
+     import matplotlib.pyplot as plt
+     import seaborn as sns
+     import stats
+     import joblib
+ 
+     from sklearn.pipeline import Pipeline
+     from sklearn.ensemble import RandomForestClassifier
+     from sklearn import preprocessing
+     from sklearn.preprocessing import OneHotEncoder
+     from sklearn.compose import ColumnTransformer
+ 
+     pipe = joblib.load('model.pkl')
+     df.drop('y', axis=1, inplace=True)
+     pred = pipe.predict_proba(df)
+     positive_class = []
+     for i in pred:
+         positive_class.append(i[1])
+     df_pred = pd.DataFrame(data=positive_class, columns=['make_deposit'])
+     return df_pred
+ 
+ def get_output_schema():
+      return pd.DataFrame({
+     'make_deposit' : prep_decimal()
+      })
+ execution_result = predict_bank(pd.DataFrame(_arg1))
+ return execution_result.to_dict(orient='list') if isinstance(execution_result, pd.DataFrame) else execution_result
+
+2022-03-06,18:12:07 [INFO] (web.py:web:2239): 200 POST /evaluate (127.0.0.1) 2269.45ms
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): Checking if need to handle authentication
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): Handling authentication
+2022-03-06,18:12:52 [INFO] (base_handler.py:base_handler:115): Authentication is not a required feature for API "v1"
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): Checking request headers for authentication data
+2022-03-06,18:12:52 [INFO] (base_handler.py:base_handler:115): Authorization header not found
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): authentication not required, username and password are none
+2022-03-06,18:12:52 [DEBUG] (state.py:state:511): Collecting Access-Control-Allow-Origin from state file ...
+2022-03-06,18:12:52 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Origin' from section [Service Info]...
+2022-03-06,18:12:52 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:12:52 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Headers' from section [Service Info]...
+2022-03-06,18:12:52 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:12:52 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Methods' from section [Service Info]...
+2022-03-06,18:12:52 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): Processing POST request '{'data': {'_arg1': {'cons.conf.idx': ['prep_decimal_type'], 'loan': ['prep_string_type'], 'education': ['prep_string_type'], 'previous': ['prep_int_type'], 'housing': ['prep_string_type'], 'cons.price.idx': ['prep_decimal_type'], 'euribor3m': ['prep_decimal_type'], 'poutcome': ['prep_string_type'], 'duration': ['prep_int_type'], 'marital': ['prep_string_type'], 'default': ['prep_string_type'], 'month': ['prep_string_type'], 'contact': ['prep_string_type'], 'y': ['prep_string_type'], 'campaign': ['prep_int_type'], 'job': ['prep_string_type'], 'emp.var.rate': ['prep_decimal_type'], 'pdays': ['prep_int_type'], 'age': ['prep_int_type'], 'day_of_week': ['prep_string_type'], 'nr.employed': ['prep_decimal_type']}}, 'script': "import pandas as pd\ndef get_output_schema():\n\treturn '6f074fe9-48ed-4687-8f62-f714b852dc4b'\ndef prep_string():\n\treturn ['prep_string_type']\ndef prep_bool():\n\treturn ['prep_bool_type']\ndef prep_int():\n\treturn ['prep_int_type']\ndef prep_decimal():\n    return ['prep_decimal_type']\ndef prep_date():\n\treturn ['prep_date_type']\ndef prep_datetime():\n\treturn ['prep_datetime_type']\ndef predict_bank(df):\n    import numpy as np\n    import pandas as pd\n    import matplotlib.pyplot as plt\n    import seaborn as sns\n    import stats\n    import joblib\n\n    from sklearn.pipeline import Pipeline\n    from sklearn.ensemble import RandomForestClassifier\n    from sklearn import preprocessing\n    from sklearn.preprocessing import OneHotEncoder\n    from sklearn.compose import ColumnTransformer\n\n    pipe = joblib.load('model.pkl')\n    df.drop('y', axis=1, inplace=True)\n    pred = pipe.predict_proba(df)\n    positive_class = []\n    for i in pred:\n        positive_class.append(i[1])\n    df_pred = pd.DataFrame(data=positive_class, columns=['make_deposit'])\n    return df_pred\n\ndef get_output_schema():\n     return pd.DataFrame({\n    'make_deposit' : prep_decimal()\n     })\ndef get_output_schema_4e14c25bc20e44478730c1859af63352(df = pd.DataFrame()):\n    import inspect\n    if len(inspect.getfullargspec(get_output_schema).args) == 0:\n        return get_output_schema()\n    else:\n        return get_output_schema(df)\nresult_schema_output = get_output_schema_4e14c25bc20e44478730c1859af63352(pd.DataFrame(_arg1))\nreturn result_schema_output.to_dict(orient='split') if isinstance(result_schema_output, pd.DataFrame) else result_schema_output"}'...
+2022-03-06,18:12:52 [INFO] (base_handler.py:base_handler:115): function to evaluate=def _user_script(tabpy, _arg1):
+ import pandas as pd
+ def get_output_schema():
+ 	return '6f074fe9-48ed-4687-8f62-f714b852dc4b'
+ def prep_string():
+ 	return ['prep_string_type']
+ def prep_bool():
+ 	return ['prep_bool_type']
+ def prep_int():
+ 	return ['prep_int_type']
+ def prep_decimal():
+     return ['prep_decimal_type']
+ def prep_date():
+ 	return ['prep_date_type']
+ def prep_datetime():
+ 	return ['prep_datetime_type']
+ def predict_bank(df):
+     import numpy as np
+     import pandas as pd
+     import matplotlib.pyplot as plt
+     import seaborn as sns
+     import stats
+     import joblib
+ 
+     from sklearn.pipeline import Pipeline
+     from sklearn.ensemble import RandomForestClassifier
+     from sklearn import preprocessing
+     from sklearn.preprocessing import OneHotEncoder
+     from sklearn.compose import ColumnTransformer
+ 
+     pipe = joblib.load('model.pkl')
+     df.drop('y', axis=1, inplace=True)
+     pred = pipe.predict_proba(df)
+     positive_class = []
+     for i in pred:
+         positive_class.append(i[1])
+     df_pred = pd.DataFrame(data=positive_class, columns=['make_deposit'])
+     return df_pred
+ 
+ def get_output_schema():
+      return pd.DataFrame({
+     'make_deposit' : prep_decimal()
+      })
+ def get_output_schema_4e14c25bc20e44478730c1859af63352(df = pd.DataFrame()):
+     import inspect
+     if len(inspect.getfullargspec(get_output_schema).args) == 0:
+         return get_output_schema()
+     else:
+         return get_output_schema(df)
+ result_schema_output = get_output_schema_4e14c25bc20e44478730c1859af63352(pd.DataFrame(_arg1))
+ return result_schema_output.to_dict(orient='split') if isinstance(result_schema_output, pd.DataFrame) else result_schema_output
+
+2022-03-06,18:12:52 [INFO] (web.py:web:2239): 200 POST /evaluate (127.0.0.1) 9.97ms
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): Checking if need to handle authentication
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): Handling authentication
+2022-03-06,18:12:52 [INFO] (base_handler.py:base_handler:115): Authentication is not a required feature for API "v1"
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): Checking request headers for authentication data
+2022-03-06,18:12:52 [INFO] (base_handler.py:base_handler:115): Authorization header not found
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): authentication not required, username and password are none
+2022-03-06,18:12:52 [DEBUG] (state.py:state:511): Collecting Access-Control-Allow-Origin from state file ...
+2022-03-06,18:12:52 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Origin' from section [Service Info]...
+2022-03-06,18:12:52 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:12:52 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Headers' from section [Service Info]...
+2022-03-06,18:12:52 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:12:52 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Methods' from section [Service Info]...
+2022-03-06,18:12:52 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:12:52 [DEBUG] (base_handler.py:base_handler:115): Processing POST request '{'data': {'_arg1': {'cons.conf.idx': ['prep_decimal_type'], 'loan': ['prep_string_type'], 'education': ['prep_string_type'], 'previous': ['prep_int_type'], 'housing': ['prep_string_type'], 'cons.price.idx': ['prep_decimal_type'], 'euribor3m': ['prep_decimal_type'], 'poutcome': ['prep_string_type'], 'duration': ['prep_int_type'], 'marital': ['prep_string_type'], 'default': ['prep_string_type'], 'month': ['prep_string_type'], 'contact': ['prep_string_type'], 'y': ['prep_string_type'], 'campaign': ['prep_int_type'], 'job': ['prep_string_type'], 'emp.var.rate': ['prep_decimal_type'], 'pdays': ['prep_int_type'], 'age': ['prep_int_type'], 'day_of_week': ['prep_string_type'], 'nr.employed': ['prep_decimal_type']}}, 'script': "import pandas as pd\ndef get_output_schema():\n\treturn '6f074fe9-48ed-4687-8f62-f714b852dc4b'\ndef prep_string():\n\treturn ['prep_string_type']\ndef prep_bool():\n\treturn ['prep_bool_type']\ndef prep_int():\n\treturn ['prep_int_type']\ndef prep_decimal():\n    return ['prep_decimal_type']\ndef prep_date():\n\treturn ['prep_date_type']\ndef prep_datetime():\n\treturn ['prep_datetime_type']\ndef predict_bank(df):\n    import numpy as np\n    import pandas as pd\n    import matplotlib.pyplot as plt\n    import seaborn as sns\n    import stats\n    import joblib\n\n    from sklearn.pipeline import Pipeline\n    from sklearn.ensemble import RandomForestClassifier\n    from sklearn import preprocessing\n    from sklearn.preprocessing import OneHotEncoder\n    from sklearn.compose import ColumnTransformer\n\n    pipe = joblib.load('model.pkl')\n    df.drop('y', axis=1, inplace=True)\n    pred = pipe.predict_proba(df)\n    positive_class = []\n    for i in pred:\n        positive_class.append(i[1])\n    df_pred = pd.DataFrame(data=positive_class, columns=['make_deposit'])\n    return df_pred\n\ndef get_output_schema():\n     return pd.DataFrame({\n    'make_deposit' : prep_decimal()\n     })\ndef get_output_schema_4e14c25bc20e44478730c1859af63352(df = pd.DataFrame()):\n    import inspect\n    if len(inspect.getfullargspec(get_output_schema).args) == 0:\n        return get_output_schema()\n    else:\n        return get_output_schema(df)\nresult_schema_output = get_output_schema_4e14c25bc20e44478730c1859af63352(pd.DataFrame(_arg1))\nreturn result_schema_output.to_dict(orient='split') if isinstance(result_schema_output, pd.DataFrame) else result_schema_output"}'...
+2022-03-06,18:12:52 [INFO] (base_handler.py:base_handler:115): function to evaluate=def _user_script(tabpy, _arg1):
+ import pandas as pd
+ def get_output_schema():
+ 	return '6f074fe9-48ed-4687-8f62-f714b852dc4b'
+ def prep_string():
+ 	return ['prep_string_type']
+ def prep_bool():
+ 	return ['prep_bool_type']
+ def prep_int():
+ 	return ['prep_int_type']
+ def prep_decimal():
+     return ['prep_decimal_type']
+ def prep_date():
+ 	return ['prep_date_type']
+ def prep_datetime():
+ 	return ['prep_datetime_type']
+ def predict_bank(df):
+     import numpy as np
+     import pandas as pd
+     import matplotlib.pyplot as plt
+     import seaborn as sns
+     import stats
+     import joblib
+ 
+     from sklearn.pipeline import Pipeline
+     from sklearn.ensemble import RandomForestClassifier
+     from sklearn import preprocessing
+     from sklearn.preprocessing import OneHotEncoder
+     from sklearn.compose import ColumnTransformer
+ 
+     pipe = joblib.load('model.pkl')
+     df.drop('y', axis=1, inplace=True)
+     pred = pipe.predict_proba(df)
+     positive_class = []
+     for i in pred:
+         positive_class.append(i[1])
+     df_pred = pd.DataFrame(data=positive_class, columns=['make_deposit'])
+     return df_pred
+ 
+ def get_output_schema():
+      return pd.DataFrame({
+     'make_deposit' : prep_decimal()
+      })
+ def get_output_schema_4e14c25bc20e44478730c1859af63352(df = pd.DataFrame()):
+     import inspect
+     if len(inspect.getfullargspec(get_output_schema).args) == 0:
+         return get_output_schema()
+     else:
+         return get_output_schema(df)
+ result_schema_output = get_output_schema_4e14c25bc20e44478730c1859af63352(pd.DataFrame(_arg1))
+ return result_schema_output.to_dict(orient='split') if isinstance(result_schema_output, pd.DataFrame) else result_schema_output
+
+2022-03-06,18:12:52 [INFO] (web.py:web:2239): 200 POST /evaluate (127.0.0.1) 9.97ms
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): Checking if need to handle authentication
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): Handling authentication
+2022-03-06,18:18:50 [INFO] (base_handler.py:base_handler:115): Authentication is not a required feature for API "v1"
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): Checking request headers for authentication data
+2022-03-06,18:18:50 [INFO] (base_handler.py:base_handler:115): Authorization header not found
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): authentication not required, username and password are none
+2022-03-06,18:18:50 [DEBUG] (state.py:state:511): Collecting Access-Control-Allow-Origin from state file ...
+2022-03-06,18:18:50 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Origin' from section [Service Info]...
+2022-03-06,18:18:50 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:18:50 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Headers' from section [Service Info]...
+2022-03-06,18:18:50 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:18:50 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Methods' from section [Service Info]...
+2022-03-06,18:18:50 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): Processing POST request '{'data': {'_arg1': {'cons.conf.idx': ['prep_decimal_type'], 'loan': ['prep_string_type'], 'education': ['prep_string_type'], 'previous': ['prep_int_type'], 'housing': ['prep_string_type'], 'cons.price.idx': ['prep_decimal_type'], 'euribor3m': ['prep_decimal_type'], 'poutcome': ['prep_string_type'], 'duration': ['prep_int_type'], 'marital': ['prep_string_type'], 'default': ['prep_string_type'], 'month': ['prep_string_type'], 'contact': ['prep_string_type'], 'y': ['prep_string_type'], 'campaign': ['prep_int_type'], 'job': ['prep_string_type'], 'emp.var.rate': ['prep_decimal_type'], 'pdays': ['prep_int_type'], 'age': ['prep_int_type'], 'day_of_week': ['prep_string_type'], 'nr.employed': ['prep_decimal_type']}}, 'script': "import pandas as pd\ndef get_output_schema():\n\treturn '6f074fe9-48ed-4687-8f62-f714b852dc4b'\ndef prep_string():\n\treturn ['prep_string_type']\ndef prep_bool():\n\treturn ['prep_bool_type']\ndef prep_int():\n\treturn ['prep_int_type']\ndef prep_decimal():\n    return ['prep_decimal_type']\ndef prep_date():\n\treturn ['prep_date_type']\ndef prep_datetime():\n\treturn ['prep_datetime_type']\ndef predict_bank(df):\n    import numpy as np\n    import pandas as pd\n    import matplotlib.pyplot as plt\n    import seaborn as sns\n    import stats\n    import joblib\n\n    from sklearn.pipeline import Pipeline\n    from sklearn.ensemble import RandomForestClassifier\n    from sklearn import preprocessing\n    from sklearn.preprocessing import OneHotEncoder\n    from sklearn.compose import ColumnTransformer\n\n    pipe = joblib.load('model.pkl')\n    df_temp = df.drop('y', axis=1)\n    pred = pipe.predict_proba(df_temp)\n    positive_class = []\n    for i in pred:\n        positive_class.append(i[1])\n    df_pred = pd.DataFrame(data=positive_class, columns=['make_deposit'])\n    df_pred = pd.concat([df.loc[:, ['age', 'job', 'marital', 'education', 'y']], df_pred], axis=1)\n    return df_pred\n\ndef get_output_schema():\n     return pd.DataFrame({\n    'age' : prep_int(),\n    'job' : prep_string(),\n    'marital' : prep_string(),\n    'education' : prep_string(),\n    'y': prep_string(),\n    'make_deposit' : prep_decimal()\n     })\ndef get_output_schema_4e14c25bc20e44478730c1859af63352(df = pd.DataFrame()):\n    import inspect\n    if len(inspect.getfullargspec(get_output_schema).args) == 0:\n        return get_output_schema()\n    else:\n        return get_output_schema(df)\nresult_schema_output = get_output_schema_4e14c25bc20e44478730c1859af63352(pd.DataFrame(_arg1))\nreturn result_schema_output.to_dict(orient='split') if isinstance(result_schema_output, pd.DataFrame) else result_schema_output"}'...
+2022-03-06,18:18:50 [INFO] (base_handler.py:base_handler:115): function to evaluate=def _user_script(tabpy, _arg1):
+ import pandas as pd
+ def get_output_schema():
+ 	return '6f074fe9-48ed-4687-8f62-f714b852dc4b'
+ def prep_string():
+ 	return ['prep_string_type']
+ def prep_bool():
+ 	return ['prep_bool_type']
+ def prep_int():
+ 	return ['prep_int_type']
+ def prep_decimal():
+     return ['prep_decimal_type']
+ def prep_date():
+ 	return ['prep_date_type']
+ def prep_datetime():
+ 	return ['prep_datetime_type']
+ def predict_bank(df):
+     import numpy as np
+     import pandas as pd
+     import matplotlib.pyplot as plt
+     import seaborn as sns
+     import stats
+     import joblib
+ 
+     from sklearn.pipeline import Pipeline
+     from sklearn.ensemble import RandomForestClassifier
+     from sklearn import preprocessing
+     from sklearn.preprocessing import OneHotEncoder
+     from sklearn.compose import ColumnTransformer
+ 
+     pipe = joblib.load('model.pkl')
+     df_temp = df.drop('y', axis=1)
+     pred = pipe.predict_proba(df_temp)
+     positive_class = []
+     for i in pred:
+         positive_class.append(i[1])
+     df_pred = pd.DataFrame(data=positive_class, columns=['make_deposit'])
+     df_pred = pd.concat([df.loc[:, ['age', 'job', 'marital', 'education', 'y']], df_pred], axis=1)
+     return df_pred
+ 
+ def get_output_schema():
+      return pd.DataFrame({
+     'age' : prep_int(),
+     'job' : prep_string(),
+     'marital' : prep_string(),
+     'education' : prep_string(),
+     'y': prep_string(),
+     'make_deposit' : prep_decimal()
+      })
+ def get_output_schema_4e14c25bc20e44478730c1859af63352(df = pd.DataFrame()):
+     import inspect
+     if len(inspect.getfullargspec(get_output_schema).args) == 0:
+         return get_output_schema()
+     else:
+         return get_output_schema(df)
+ result_schema_output = get_output_schema_4e14c25bc20e44478730c1859af63352(pd.DataFrame(_arg1))
+ return result_schema_output.to_dict(orient='split') if isinstance(result_schema_output, pd.DataFrame) else result_schema_output
+
+2022-03-06,18:18:50 [INFO] (web.py:web:2239): 200 POST /evaluate (127.0.0.1) 7.97ms
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): Checking if need to handle authentication
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): Handling authentication
+2022-03-06,18:18:50 [INFO] (base_handler.py:base_handler:115): Authentication is not a required feature for API "v1"
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): Checking request headers for authentication data
+2022-03-06,18:18:50 [INFO] (base_handler.py:base_handler:115): Authorization header not found
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): authentication not required, username and password are none
+2022-03-06,18:18:50 [DEBUG] (state.py:state:511): Collecting Access-Control-Allow-Origin from state file ...
+2022-03-06,18:18:50 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Origin' from section [Service Info]...
+2022-03-06,18:18:50 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:18:50 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Headers' from section [Service Info]...
+2022-03-06,18:18:50 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:18:50 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Methods' from section [Service Info]...
+2022-03-06,18:18:50 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:18:50 [DEBUG] (base_handler.py:base_handler:115): Processing POST request '{'data': {'_arg1': {'cons.conf.idx': ['prep_decimal_type'], 'loan': ['prep_string_type'], 'education': ['prep_string_type'], 'previous': ['prep_int_type'], 'housing': ['prep_string_type'], 'cons.price.idx': ['prep_decimal_type'], 'euribor3m': ['prep_decimal_type'], 'poutcome': ['prep_string_type'], 'duration': ['prep_int_type'], 'marital': ['prep_string_type'], 'default': ['prep_string_type'], 'month': ['prep_string_type'], 'contact': ['prep_string_type'], 'y': ['prep_string_type'], 'campaign': ['prep_int_type'], 'job': ['prep_string_type'], 'emp.var.rate': ['prep_decimal_type'], 'pdays': ['prep_int_type'], 'age': ['prep_int_type'], 'day_of_week': ['prep_string_type'], 'nr.employed': ['prep_decimal_type']}}, 'script': "import pandas as pd\ndef get_output_schema():\n\treturn '6f074fe9-48ed-4687-8f62-f714b852dc4b'\ndef prep_string():\n\treturn ['prep_string_type']\ndef prep_bool():\n\treturn ['prep_bool_type']\ndef prep_int():\n\treturn ['prep_int_type']\ndef prep_decimal():\n    return ['prep_decimal_type']\ndef prep_date():\n\treturn ['prep_date_type']\ndef prep_datetime():\n\treturn ['prep_datetime_type']\ndef predict_bank(df):\n    import numpy as np\n    import pandas as pd\n    import matplotlib.pyplot as plt\n    import seaborn as sns\n    import stats\n    import joblib\n\n    from sklearn.pipeline import Pipeline\n    from sklearn.ensemble import RandomForestClassifier\n    from sklearn import preprocessing\n    from sklearn.preprocessing import OneHotEncoder\n    from sklearn.compose import ColumnTransformer\n\n    pipe = joblib.load('model.pkl')\n    df_temp = df.drop('y', axis=1)\n    pred = pipe.predict_proba(df_temp)\n    positive_class = []\n    for i in pred:\n        positive_class.append(i[1])\n    df_pred = pd.DataFrame(data=positive_class, columns=['make_deposit'])\n    df_pred = pd.concat([df.loc[:, ['age', 'job', 'marital', 'education', 'y']], df_pred], axis=1)\n    return df_pred\n\ndef get_output_schema():\n     return pd.DataFrame({\n    'age' : prep_int(),\n    'job' : prep_string(),\n    'marital' : prep_string(),\n    'education' : prep_string(),\n    'y': prep_string(),\n    'make_deposit' : prep_decimal()\n     })\ndef get_output_schema_4e14c25bc20e44478730c1859af63352(df = pd.DataFrame()):\n    import inspect\n    if len(inspect.getfullargspec(get_output_schema).args) == 0:\n        return get_output_schema()\n    else:\n        return get_output_schema(df)\nresult_schema_output = get_output_schema_4e14c25bc20e44478730c1859af63352(pd.DataFrame(_arg1))\nreturn result_schema_output.to_dict(orient='split') if isinstance(result_schema_output, pd.DataFrame) else result_schema_output"}'...
+2022-03-06,18:18:50 [INFO] (base_handler.py:base_handler:115): function to evaluate=def _user_script(tabpy, _arg1):
+ import pandas as pd
+ def get_output_schema():
+ 	return '6f074fe9-48ed-4687-8f62-f714b852dc4b'
+ def prep_string():
+ 	return ['prep_string_type']
+ def prep_bool():
+ 	return ['prep_bool_type']
+ def prep_int():
+ 	return ['prep_int_type']
+ def prep_decimal():
+     return ['prep_decimal_type']
+ def prep_date():
+ 	return ['prep_date_type']
+ def prep_datetime():
+ 	return ['prep_datetime_type']
+ def predict_bank(df):
+     import numpy as np
+     import pandas as pd
+     import matplotlib.pyplot as plt
+     import seaborn as sns
+     import stats
+     import joblib
+ 
+     from sklearn.pipeline import Pipeline
+     from sklearn.ensemble import RandomForestClassifier
+     from sklearn import preprocessing
+     from sklearn.preprocessing import OneHotEncoder
+     from sklearn.compose import ColumnTransformer
+ 
+     pipe = joblib.load('model.pkl')
+     df_temp = df.drop('y', axis=1)
+     pred = pipe.predict_proba(df_temp)
+     positive_class = []
+     for i in pred:
+         positive_class.append(i[1])
+     df_pred = pd.DataFrame(data=positive_class, columns=['make_deposit'])
+     df_pred = pd.concat([df.loc[:, ['age', 'job', 'marital', 'education', 'y']], df_pred], axis=1)
+     return df_pred
+ 
+ def get_output_schema():
+      return pd.DataFrame({
+     'age' : prep_int(),
+     'job' : prep_string(),
+     'marital' : prep_string(),
+     'education' : prep_string(),
+     'y': prep_string(),
+     'make_deposit' : prep_decimal()
+      })
+ def get_output_schema_4e14c25bc20e44478730c1859af63352(df = pd.DataFrame()):
+     import inspect
+     if len(inspect.getfullargspec(get_output_schema).args) == 0:
+         return get_output_schema()
+     else:
+         return get_output_schema(df)
+ result_schema_output = get_output_schema_4e14c25bc20e44478730c1859af63352(pd.DataFrame(_arg1))
+ return result_schema_output.to_dict(orient='split') if isinstance(result_schema_output, pd.DataFrame) else result_schema_output
+
+2022-03-06,18:18:50 [INFO] (web.py:web:2239): 200 POST /evaluate (127.0.0.1) 9.00ms
+2022-03-06,18:18:51 [DEBUG] (base_handler.py:base_handler:115): Checking if need to handle authentication
+2022-03-06,18:18:51 [DEBUG] (base_handler.py:base_handler:115): Handling authentication
+2022-03-06,18:18:51 [INFO] (base_handler.py:base_handler:115): Authentication is not a required feature for API "v1"
+2022-03-06,18:18:51 [DEBUG] (base_handler.py:base_handler:115): Checking request headers for authentication data
+2022-03-06,18:18:51 [INFO] (base_handler.py:base_handler:115): Authorization header not found
+2022-03-06,18:18:51 [DEBUG] (base_handler.py:base_handler:115): authentication not required, username and password are none
+2022-03-06,18:18:51 [DEBUG] (state.py:state:511): Collecting Access-Control-Allow-Origin from state file ...
+2022-03-06,18:18:51 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Origin' from section [Service Info]...
+2022-03-06,18:18:51 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:18:51 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Headers' from section [Service Info]...
+2022-03-06,18:18:51 [DEBUG] (state.py:state:635): Returning value ''
+2022-03-06,18:18:51 [DEBUG] (state.py:state:613): Loading option 'Access-Control-Allow-Methods' from section [Service Info]...
+2022-03-06,18:18:51 [DEBUG] (state.py:state:635): Returning value ''
